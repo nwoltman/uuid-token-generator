@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - '0.12'
+  - 'iojs'
+before_script: npm install -g grunt-cli
+deploy:
+  provider: npm
+  email: nwoltman@outlook.com
+  api_key:
+    secure: VGScepvpixzRTPOD8xLm473wq5yN7hb55N2dyCoOPPtWXOPDFICUHQPwbjmU57O/qaFrdCJR04PAJws8OcMBHPZoNnNw9E5Ir2sAFDpQDZKM/kbVbBK0PecRT3HRYG0V9OgrI5uebCck2Q+n3HYCI7N72ueil0QAjQpYY0dGNyC//TAS8cIpN3TBHz2fC/pE6C5s+IdtrV5lMtejSwzpGmYRiO+xxMbbio33Irc/AVKocfRrX0mVQIUEbrCRqsW1QAahx4yfoRoh564LfSWwgNPT9K9F49LNKJjdELtqhcIL7BzASkeeuBSieJxPjyLxILj2QOWJY6w65LIhpiCV2gAGNeX36weuAE9Q3/1LKlxEsIEfOTy4xFcLEjXlTlBmmUpiBcwP/zQ8bVnEZVvWMbYgnSGFQrKu2ItKzz/GLporj6iPbYGj2ahRW/QIdzVkdiNtFaF21htqGob9qNmyTFgrKPDrZJeOW7FAH66atqwTdrqJ8zAmRqB1SBxJHzX6bHP8JqzODIU+0oAuOjg3jspZzWNhFoW5zSrIzTcC3J/UDNisOQSBYVsuZZfD+T9V1CuwM+u8TFyoep3E+yzcYmHWMwqvBZRWgcuvrlky8uZ1PndfAgVJ/21rg9Ffwqkjkcs7Bx8lKFvvAVUYTOjyuAHATMZWnPlVdvDEJfXg+0k=
+  on:
+    tags: true
