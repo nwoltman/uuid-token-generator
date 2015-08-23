@@ -12,6 +12,15 @@
   "bugs": {
     "url": "https://github.com/woollybogger/uuid-key-generator/issues"
   },
+  "keywords": [
+    "uuid",
+    "key",
+    "generator",
+    "keygen",
+    "random",
+    "unique",
+    "apikey"
+  ],
   "scripts": {
     "test": "grunt"
   },
