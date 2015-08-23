@@ -92,4 +92,5 @@ The set of characters used to encode the key (the `baseEncoding` value passed to
 The base of the key that will be generated (which is the number of characters in the `baseEncoding`).
 
 ### (readonly) keygen.keyLength : `Number`
-The length of the key that will be generated. The generated key will always be this length.
+The length of the key that will be generated. The generated key will always be this length.  
+Calculated as such: `keyLength = Math.ceil(bitSize / Math.log2(base))`
