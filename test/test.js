@@ -129,6 +129,19 @@ describe('KeyGenerator', function() {
       key.should.match(new RegExp('^[' + keygen.baseEncoding + ']{' + keygen.keyLength + '}$'));
     });
 
+    it('should produce a key of the correct length even if the uuid function returns a small key value', function() {
+      // Mock node-uuid.v4
+      require('node-uuid').v4 = function(options, buffer, offset) {
+        offset = offset || 0;
+        for (var i = 0; i < 16; i++) {
+          buffer[offset + i] = 1;
+        }
+      };
+      var keygen = new KeyGenerator(256);
+      var key = keygen.generateKey();
+      key.should.match(new RegExp('^[' + keygen.baseEncoding + ']{' + keygen.keyLength + '}$'));
+    });
+
     it('should work if the generated UUID has leading zeros', function() {
       // Mock node-uuid.v4
       require('node-uuid').v4 = function(options, buffer, offset) {
