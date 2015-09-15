@@ -9,6 +9,11 @@
 
 var uuid = require('node-uuid');
 
+// Polyfill Math.log2() if necessary
+Math.log2 = Math.log2 || function(x) {
+  return Math.log(x) / Math.log(2);
+};
+
 function KeyGenerator(bitSize, baseEncoding) {
   if (typeof bitSize === 'string') {
     baseEncoding = bitSize;
