@@ -67,13 +67,13 @@ KeyGenerator.prototype.generateKey = function() {
     var carry = 0;
     for (j = 0; j < digits.length; j++) {
       digits[j] += carry;
-      carry = (digits[j] / this.base) | 0;
+      carry = digits[j] / this.base | 0;
       digits[j] %= this.base;
     }
 
     while (carry) {
       digits.push(carry % this.base);
-      carry = (carry / this.base) | 0;
+      carry = carry / this.base | 0;
     }
   }
 
@@ -84,7 +84,7 @@ KeyGenerator.prototype.generateKey = function() {
 
   // Fill with random numbers to get the full key length
   while (digits.length < this.keyLength) {
-    digits.push((this.base * Math.random()) | 0);
+    digits.push(this.base * Math.random() | 0);
   }
 
   // Convert digits to a string

@@ -5,6 +5,7 @@
 
 var KeyGenerator = require('../');
 var should = require('should');
+var uuid = require('node-uuid');
 
 describe('KeyGenerator', function() {
 
@@ -131,7 +132,7 @@ describe('KeyGenerator', function() {
 
     it('should produce a key of the correct length even if the uuid function returns a small key value', function() {
       // Mock node-uuid.v4
-      require('node-uuid').v4 = function(options, buffer, offset) {
+      uuid.v4 = function(options, buffer, offset) {
         offset = offset || 0;
         for (var i = 0; i < 16; i++) {
           buffer[offset + i] = 1;
@@ -144,12 +145,12 @@ describe('KeyGenerator', function() {
 
     it('should work if the generated UUID has leading zeros', function() {
       // Mock node-uuid.v4
-      require('node-uuid').v4 = function(options, buffer, offset) {
+      uuid.v4 = function(options, buffer, offset) {
         offset = offset || 0;
         buffer[offset] = 0;
         buffer[offset + 1] = 0;
         for (var i = 2; i < 16; i++) {
-          buffer[offset + i] = (256 * Math.random()) | 0;
+          buffer[offset + i] = 256 * Math.random() | 0;
         }
       };
       var keygen = new KeyGenerator();
