@@ -1,9 +1,7 @@
 'use strict';
 
-/* jshint mocha: true */
-/* jscs:disable requireBlocksOnNewline */
-
 var KeyGenerator = require('../');
+
 var should = require('should');
 var uuid = require('node-uuid');
 
