@@ -40,6 +40,6 @@
     "grunt-jsonlint": "^1.0.4",
     "grunt-mocha-cov": "~0.4.0",
     "mocha": "^2.2.5",
-    "should": "^7.0.4"
+    "should": "^8.0.2"
   }
 }
