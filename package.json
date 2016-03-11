@@ -2,15 +2,15 @@
   "name": "uuid-key-generator",
   "version": "0.1.2",
   "description": "Generates random keys with custom size and base-encoding using the RFC4122 v4 UUID algorithm",
-  "homepage": "https://github.com/woollybogger/uuid-key-generator",
+  "homepage": "https://github.com/nwoltman/uuid-key-generator",
   "license": "MIT",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/woollybogger/uuid-key-generator.git"
+    "url": "https://github.com/nwoltman/uuid-key-generator.git"
   },
   "bugs": {
-    "url": "https://github.com/woollybogger/uuid-key-generator/issues"
+    "url": "https://github.com/nwoltman/uuid-key-generator/issues"
   },
   "keywords": [
     "uuid",

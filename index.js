@@ -2,7 +2,7 @@
  * UUID Key Generator
  *
  * @copyright 2015 Nathan Woltman
- * @license MIT https://github.com/woollybogger/uuid-key-generator/blob/master/LICENSE.txt
+ * @license MIT https://github.com/nwoltman/uuid-key-generator/blob/master/LICENSE.txt
  */
 
 'use strict';

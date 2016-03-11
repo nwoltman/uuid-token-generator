@@ -1,10 +1,10 @@
 # UUID Key Generator
 
 [![NPM Version](https://img.shields.io/npm/v/uuid-key-generator.svg)](https://www.npmjs.com/package/uuid-key-generator)
-[![Build Status](https://travis-ci.org/woollybogger/uuid-key-generator.svg?branch=master)](https://travis-ci.org/woollybogger/uuid-key-generator)
-[![Coverage Status](https://coveralls.io/repos/woollybogger/uuid-key-generator/badge.svg?branch=master&service=github)](https://coveralls.io/github/woollybogger/uuid-key-generator?branch=master)
-[![Dependency Status](https://david-dm.org/woollybogger/uuid-key-generator.svg)](https://david-dm.org/woollybogger/uuid-key-generator)
-[![devDependency Status](https://david-dm.org/woollybogger/uuid-key-generator/dev-status.svg)](https://david-dm.org/woollybogger/uuid-key-generator#info=devDependencies)
+[![Build Status](https://travis-ci.org/nwoltman/uuid-key-generator.svg?branch=master)](https://travis-ci.org/nwoltman/uuid-key-generator)
+[![Coverage Status](https://coveralls.io/repos/nwoltman/uuid-key-generator/badge.svg?branch=master&service=github)](https://coveralls.io/github/nwoltman/uuid-key-generator?branch=master)
+[![Dependency Status](https://david-dm.org/nwoltman/uuid-key-generator.svg)](https://david-dm.org/nwoltman/uuid-key-generator)
+[![devDependency Status](https://david-dm.org/nwoltman/uuid-key-generator/dev-status.svg)](https://david-dm.org/nwoltman/uuid-key-generator#info=devDependencies)
 
 Provides a class that generates random keys with custom size and base-encoding using the RFC4122 v4 UUID algorithm. Generated keys are strings that are guaranteed to always be the same length, depending on the specified bit-size of the key.
 
