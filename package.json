@@ -5,6 +5,10 @@
   "homepage": "https://github.com/nwoltman/uuid-key-generator",
   "license": "MIT",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "LICENSE.txt"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/nwoltman/uuid-key-generator.git"
