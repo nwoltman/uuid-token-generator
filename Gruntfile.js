@@ -1,53 +1,56 @@
-/* eslint-disable comma-dangle, global-require, no-sync */
+/* eslint-disable camelcase, global-require, no-sync */
 
 'use strict';
 
 module.exports = function(grunt) {
+  require('jit-grunt')(grunt)({
+    customTasksDir: 'tasks',
+  });
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-
-    jsonlint: {
-      all: ['*.json'],
-    },
 
     eslint: {
       all: ['*.js', 'test/*.js'],
     },
 
-    mochacov: {
+    mochaTest: {
       test: {
-        options: {
-          reporter: 'spec'
-        }
-      },
-      coverage: {
-        options: {
-          reporter: 'html-cov',
-          quiet: true,
-          output: 'coverage/coverage.html'
-        }
-      },
-      ciCoverage: {
-        options: {
-          coveralls: true
-        }
+        src: 'test/*.js',
       },
       options: {
-        files: 'test/*.js'
-      }
-    }
+        colors: true,
+      },
+    },
+
+    mocha_istanbul: {
+      coverage: {
+        src: 'test/*.js',
+        options: {
+          reportFormats: ['html'],
+        },
+      },
+      coveralls: {
+        src: 'test/*.js',
+        options: {
+          coverage: true,
+          reportFormats: ['lcovonly'],
+        },
+      },
+      options: {
+        mochaOptions: ['--colors'],
+      },
+    },
   });
 
-  // Load the Grunt plugins
-  grunt.loadNpmTasks('grunt-jsonlint');
-  grunt.loadNpmTasks('grunt-eslint');
-  grunt.loadNpmTasks('grunt-mocha-cov');
+  grunt.event.on('coverage', function(lcov, done) {
+    require('coveralls').handleInput(lcov, done);
+  });
 
   // Register tasks
-  grunt.registerTask('lint', ['jsonlint', 'eslint']);
-  grunt.registerTask('test', ['mochacov:test'].concat(process.env.CI ? ['mochacov:ciCoverage'] : []));
-  grunt.registerTask('coverage', ['mochacov:coverage']);
+  grunt.registerTask('lint', ['eslint']);
+  grunt.registerTask('test', [process.env.CI ? 'mocha_istanbul:coveralls' : 'mochaTest']);
+  grunt.registerTask('coverage', ['mocha_istanbul:coverage']);
   grunt.registerTask('default', ['lint', 'test']);
 
   grunt.registerTask('changelog', 'Add the changes since the last release to the changelog', function() {
