@@ -1,6 +1,6 @@
 {
   "name": "uuid-key-generator",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Generates random keys with custom size and base-encoding using the RFC4122 v4 UUID algorithm",
   "homepage": "https://github.com/nwoltman/uuid-key-generator",
   "license": "MIT",
