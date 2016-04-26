@@ -6,7 +6,7 @@
 [![Dependency Status](https://david-dm.org/nwoltman/uuid-key-generator.svg)](https://david-dm.org/nwoltman/uuid-key-generator)
 [![devDependency Status](https://david-dm.org/nwoltman/uuid-key-generator/dev-status.svg)](https://david-dm.org/nwoltman/uuid-key-generator#info=devDependencies)
 
-Provides a class that generates random keys with custom size and base-encoding using the RFC4122 v4 UUID algorithm. Generated keys are strings that are guaranteed to always be the same length, depending on the specified bit-size of the key.
+Provides a class that generates random keys with custom size and base-encoding using the [RFC4122](http://www.ietf.org/rfc/rfc4122.txt) v4 UUID algorithm. Generated keys are strings that are guaranteed to always be the same length, depending on the [bit-size](#new-keygeneratorbitsize-baseencoding--object) specified for the key.
 
 Great for generating things like API keys and compact IDs.
 
@@ -36,7 +36,7 @@ keygen2.generateKey();
 ## API
 
 ### new KeyGenerator([bitSize][, baseEncoding]) ⇒ `Object`
-Creates a new KeyGenerator instance that generates `bitSize` keys encoded using the characters in `baseEncoding`.
+Creates a new KeyGenerator instance that generates `bitSize`-bit keys encoded using the characters in `baseEncoding`.
 
 | Param | Default | Type | Description |
 |-------|---------|------|-------------|
