@@ -1,10 +1,3 @@
-/**
- * UUID Key Generator
- *
- * @copyright 2015 Nathan Woltman
- * @license MIT https://github.com/nwoltman/uuid-key-generator/blob/master/LICENSE.txt
- */
-
 'use strict';
 
 var uuid = require('node-uuid');
