@@ -6,7 +6,7 @@
 [![Dependency Status](https://david-dm.org/nwoltman/uuid-token-generator.svg)](https://david-dm.org/nwoltman/uuid-token-generator)
 [![devDependency Status](https://david-dm.org/nwoltman/uuid-token-generator/dev-status.svg)](https://david-dm.org/nwoltman/uuid-token-generator#info=devDependencies)
 
-Provides a class that generates random tokens with custom size and base-encoding using the [RFC4122](http://www.ietf.org/rfc/rfc4122.txt) v4 UUID algorithm. Generated tokens are strings that are guaranteed to always be the same length, depending on the [bit-size](#new-tokgeneratorbitsize-baseencoding--object) specified for the token.
+Provides a class that generates random tokens with custom size and base-encoding using the [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt) v4 UUID algorithm. Generated tokens are strings that are guaranteed to always be the same length, depending on the [bit-size](#new-tokgeneratorbitsize-baseencoding--object) specified for the token.
 
 Great for generating things like API keys and compact UIDs.
 
