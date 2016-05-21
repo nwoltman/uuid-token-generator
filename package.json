@@ -1,8 +1,8 @@
 {
-  "name": "uuid-key-generator",
+  "name": "uuid-token-generator",
   "version": "0.3.0",
-  "description": "Generates random keys with custom size and base-encoding using the RFC4122 v4 UUID algorithm",
-  "homepage": "https://github.com/nwoltman/uuid-key-generator",
+  "description": "Generates random tokens with custom size and base-encoding using the RFC4122 v4 UUID algorithm",
+  "homepage": "https://github.com/nwoltman/uuid-token-generator",
   "license": "MIT",
   "main": "index.js",
   "files": [
@@ -11,19 +11,18 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/nwoltman/uuid-key-generator.git"
+    "url": "https://github.com/nwoltman/uuid-token-generator.git"
   },
   "bugs": {
-    "url": "https://github.com/nwoltman/uuid-key-generator/issues"
+    "url": "https://github.com/nwoltman/uuid-token-generator/issues"
   },
   "keywords": [
+    "uid",
     "uuid",
-    "key",
+    "token",
     "generator",
-    "keygen",
     "random",
-    "unique",
-    "apikey"
+    "unique"
   ],
   "scripts": {
     "test": "grunt"

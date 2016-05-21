@@ -1,101 +1,101 @@
-# UUID Key Generator
+# UUID Token Generator
 
-[![NPM Version](https://img.shields.io/npm/v/uuid-key-generator.svg)](https://www.npmjs.com/package/uuid-key-generator)
-[![Build Status](https://travis-ci.org/nwoltman/uuid-key-generator.svg?branch=master)](https://travis-ci.org/nwoltman/uuid-key-generator)
-[![Coverage Status](https://coveralls.io/repos/nwoltman/uuid-key-generator/badge.svg?branch=master&service=github)](https://coveralls.io/github/nwoltman/uuid-key-generator?branch=master)
-[![Dependency Status](https://david-dm.org/nwoltman/uuid-key-generator.svg)](https://david-dm.org/nwoltman/uuid-key-generator)
-[![devDependency Status](https://david-dm.org/nwoltman/uuid-key-generator/dev-status.svg)](https://david-dm.org/nwoltman/uuid-key-generator#info=devDependencies)
+[![NPM Version](https://img.shields.io/npm/v/uuid-token-generator.svg)](https://www.npmjs.com/package/uuid-token-generator)
+[![Build Status](https://travis-ci.org/nwoltman/uuid-token-generator.svg?branch=master)](https://travis-ci.org/nwoltman/uuid-token-generator)
+[![Coverage Status](https://coveralls.io/repos/nwoltman/uuid-token-generator/badge.svg?branch=master&service=github)](https://coveralls.io/github/nwoltman/uuid-token-generator?branch=master)
+[![Dependency Status](https://david-dm.org/nwoltman/uuid-token-generator.svg)](https://david-dm.org/nwoltman/uuid-token-generator)
+[![devDependency Status](https://david-dm.org/nwoltman/uuid-token-generator/dev-status.svg)](https://david-dm.org/nwoltman/uuid-token-generator#info=devDependencies)
 
-Provides a class that generates random keys with custom size and base-encoding using the [RFC4122](http://www.ietf.org/rfc/rfc4122.txt) v4 UUID algorithm. Generated keys are strings that are guaranteed to always be the same length, depending on the [bit-size](#new-keygeneratorbitsize-baseencoding--object) specified for the key.
+Provides a class that generates random tokens with custom size and base-encoding using the [RFC4122](http://www.ietf.org/rfc/rfc4122.txt) v4 UUID algorithm. Generated tokens are strings that are guaranteed to always be the same length, depending on the [bit-size](#new-tokgeneratorbitsize-baseencoding--object) specified for the token.
 
-Great for generating things like API keys and compact IDs.
+Great for generating things like API keys and compact UIDs.
 
 
 ## Installation
 
 ```sh
-npm install uuid-key-generator --save
+npm install uuid-token-generator --save
 ```
 
 
 ## Usage
 
 ```js
-var KeyGenerator = require('uuid-key-generator');
+var TokenGenerator = require('uuid-token-generator');
 
-var keygen = new KeyGenerator(); // Default is a 128-bit key encoded in base58
-keygen.generateKey();
+var tokgen = new TokenGenerator(); // Default is a 128-bit token encoded in base58
+tokgen.generate();
 // -> '4QhmRwHwwrgFqXULXNtx4d'
 
-var keygen2 = new KeyGenerator(256, KeyGenerator.BASE62);
-keygen2.generateKey();
+var tokgen2 = new TokenGenerator(256, TokenGenerator.BASE62);
+tokgen2.generate();
 // -> 'x6GCX3aq9hIT8gjhvO96ObYj0W5HBVTsj64eqCuVc5X'
 ```
 
 
 ## API
 
-### new KeyGenerator([bitSize][, baseEncoding]) ⇒ `Object`
-Creates a new KeyGenerator instance that generates `bitSize`-bit keys encoded using the characters in `baseEncoding`.
+### new TokenGenerator([bitSize][, baseEncoding]) ⇒ `Object`
+Creates a new TokenGenerator instance that generates `bitSize`-bit tokens encoded using the characters in `baseEncoding`.
 
 | Param | Default | Type | Description |
 |-------|---------|------|-------------|
-| [bitSize] | `128` | Number | The size of the key to generate in bits. Must be a multiple of 128. |
-| [baseEncoding] | `KeyGenerator.BASE58` | String | One of the `KeyGenerator.BASE##` constants or a custom string of characters to use to encode the key. |
+| [bitSize] | `128` | Number | The size of the token to generate in bits. Must be a multiple of 128. |
+| [baseEncoding] | `TokenGenerator.BASE58` | String | One of the `TokenGenerator.BASE##` constants or a custom string of characters to use to encode the token. |
 
 **Example**
 ```js
-new KeyGenerator();
-new KeyGenerator(256);
-new KeyGenerator(KeyGenerator.BASE36);
-new KeyGenerator(512, KeyGenerator.BASE62);
-new KeyGenerator('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/'); // Custom encoding (base64)
+new TokenGenerator();
+new TokenGenerator(256);
+new TokenGenerator(TokenGenerator.BASE36);
+new TokenGenerator(512, TokenGenerator.BASE62);
+new TokenGenerator('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/'); // Custom encoding (base64)
 ```
 
 ---
 
-### KeyGenerator.BASE16 : `String`
+### TokenGenerator.BASE16 : `String`
 `0123456789abcdef`
 
-### KeyGenerator.BASE36 : `String`
+### TokenGenerator.BASE36 : `String`
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ`
 
-### KeyGenerator.BASE58 : `String`
+### TokenGenerator.BASE58 : `String`
 `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz`
 
-### KeyGenerator.BASE62 : `String`
+### TokenGenerator.BASE62 : `String`
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`
 
-### KeyGenerator.BASE71 : `String`
+### TokenGenerator.BASE71 : `String`
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~`
 
 (all ASCII characters that are not escaped by `encodeURIComponent()`)
 
 ---
 
-### keygen.generateKey() ⇒ `String`
-Generates a random key.
+### tokgen.generate() ⇒ `String`
+Generates a random token.
 
-**Returns**: `String` - A random key that is always `keygen.keyLength` characters long.
+**Returns**: `String` - A random token that is always `tokgen.tokenLength` characters long.
 
 **Example**
 ```js
-var keygen = new KeyGenerator();
-keygen.generateKey();
+var tokgen = new TokenGenerator();
+tokgen.generate();
 // -> 'vf5NrETkUKCa6FhkyRSazD'
 ```
 
 ---
 
-### (readonly) keygen.bitSize : `Number`
-The size of the key that will be generated in bits (the `bitSize` value passed to the `KeyGenerator` constructor).
+### (readonly) tokgen.bitSize : `Number`
+The size of the token that will be generated in bits (the `bitSize` value passed to the `TokenGenerator` constructor).
 
-### (readonly) keygen.baseEncoding : `String`
-The set of characters used to encode the key (the `baseEncoding` value passed to the `KeyGenerator` constructor).
+### (readonly) tokgen.baseEncoding : `String`
+The set of characters used to encode the token (the `baseEncoding` value passed to the `TokenGenerator` constructor).
 
-### (readonly) keygen.base : `Number`
-The base of the key that will be generated (which is the number of characters in the `baseEncoding`).
+### (readonly) tokgen.base : `Number`
+The base of the token that will be generated (which is the number of characters in the `baseEncoding`).
 
-### (readonly) keygen.keyLength : `Number`
-The length of the key that will be generated. The generated key will always be this length.  
-Calculated as such: `keyLength = Math.ceil(bitSize / Math.log2(base))`
+### (readonly) tokgen.tokenLength : `Number`
+The length of the token that will be generated. The generated token will always be this length.  
+Calculated as such: `tokenLength = Math.ceil(bitSize / Math.log2(base))`

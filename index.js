@@ -7,14 +7,14 @@ Math.log2 = Math.log2 || function(x) {
   return Math.log(x) / Math.log(2);
 };
 
-function KeyGenerator(bitSize, baseEncoding) {
+function TokenGenerator(bitSize, baseEncoding) {
   if (typeof bitSize === 'string') {
     baseEncoding = bitSize;
     bitSize = null;
   }
 
   bitSize = bitSize || 128;
-  baseEncoding = baseEncoding || KeyGenerator.BASE58;
+  baseEncoding = baseEncoding || TokenGenerator.BASE58;
 
   if (bitSize % 128 !== 0 || bitSize < 0) {
     throw new Error('bitSize must be a positive integer that is a multiple of 128');
@@ -26,18 +26,18 @@ function KeyGenerator(bitSize, baseEncoding) {
   this.bitSize = bitSize;
   this.baseEncoding = baseEncoding;
   this.base = baseEncoding.length;
-  this.keyLength = Math.ceil(bitSize / Math.log2(this.base));
+  this.tokenLength = Math.ceil(bitSize / Math.log2(this.base));
 
   this._bytes = bitSize / 8;
 }
 
-KeyGenerator.BASE16 = '0123456789abcdef';
-KeyGenerator.BASE36 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-KeyGenerator.BASE58 = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
-KeyGenerator.BASE62 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-KeyGenerator.BASE71 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~";
+TokenGenerator.BASE16 = '0123456789abcdef';
+TokenGenerator.BASE36 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+TokenGenerator.BASE58 = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+TokenGenerator.BASE62 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+TokenGenerator.BASE71 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~";
 
-KeyGenerator.prototype.generateKey = function() {
+TokenGenerator.prototype.generate = function() {
   var buffer = new Buffer(this._bytes);
   var digits = [0];
   var i;
@@ -47,7 +47,7 @@ KeyGenerator.prototype.generateKey = function() {
     uuid.v4(null, buffer, i);
   }
 
-  if (this.baseEncoding === KeyGenerator.BASE16) {
+  if (this.baseEncoding === TokenGenerator.BASE16) {
     return buffer.toString('hex');
   }
 
@@ -76,18 +76,18 @@ KeyGenerator.prototype.generateKey = function() {
     digits.push(0);
   }
 
-  // Fill with random numbers to get the full key length
-  while (digits.length < this.keyLength) {
+  // Fill with random numbers to get the full token length
+  while (digits.length < this.tokenLength) {
     digits.push(this.base * Math.random() | 0);
   }
 
   // Convert digits to a string
-  var key = '';
+  var token = '';
   for (i = 0; i < digits.length; i++) {
-    key += this.baseEncoding[digits[i]];
+    token += this.baseEncoding[digits[i]];
   }
 
-  return key;
+  return token;
 };
 
-module.exports = KeyGenerator;
+module.exports = TokenGenerator;

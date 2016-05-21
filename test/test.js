@@ -1,58 +1,58 @@
 'use strict';
 
-var KeyGenerator = require('../');
+var TokenGenerator = require('../');
 
 var should = require('should');
 var uuid = require('node-uuid');
 
-describe('KeyGenerator', function() {
+describe('TokenGenerator', function() {
 
-  describe('new KeyGenerator(bitSize, baseEncoding)', function() {
+  describe('new TokenGenerator(bitSize, baseEncoding)', function() {
 
     it('should accept 0 parameters', function() {
-      var keygen = new KeyGenerator();
-      keygen.should.be.an.instanceOf(KeyGenerator);
-      keygen.bitSize.should.be.exactly(128);
-      keygen.baseEncoding.should.be.exactly(KeyGenerator.BASE58);
+      var tokgen = new TokenGenerator();
+      tokgen.should.be.an.instanceOf(TokenGenerator);
+      tokgen.bitSize.should.be.exactly(128);
+      tokgen.baseEncoding.should.be.exactly(TokenGenerator.BASE58);
     });
 
     it('should accept just a bitSize parameter', function() {
-      var keygen = new KeyGenerator(256);
-      keygen.bitSize.should.be.exactly(256);
-      keygen.baseEncoding.should.be.exactly(KeyGenerator.BASE58);
+      var tokgen = new TokenGenerator(256);
+      tokgen.bitSize.should.be.exactly(256);
+      tokgen.baseEncoding.should.be.exactly(TokenGenerator.BASE58);
     });
 
     it('should accept just a baseEncoding parameter', function() {
-      var keygen = new KeyGenerator(KeyGenerator.BASE16);
-      keygen.bitSize.should.be.exactly(128);
-      keygen.baseEncoding.should.be.exactly(KeyGenerator.BASE16);
+      var tokgen = new TokenGenerator(TokenGenerator.BASE16);
+      tokgen.bitSize.should.be.exactly(128);
+      tokgen.baseEncoding.should.be.exactly(TokenGenerator.BASE16);
     });
 
     it('should accept both parameters', function() {
-      var keygen = new KeyGenerator(512, KeyGenerator.BASE62);
-      keygen.bitSize.should.be.exactly(512);
-      keygen.baseEncoding.should.be.exactly(KeyGenerator.BASE62);
+      var tokgen = new TokenGenerator(512, TokenGenerator.BASE62);
+      tokgen.bitSize.should.be.exactly(512);
+      tokgen.baseEncoding.should.be.exactly(TokenGenerator.BASE62);
     });
 
     it('should accept a custom baseEncoding', function() {
-      new KeyGenerator('123abc').baseEncoding.should.be.exactly('123abc');
-      new KeyGenerator(512, '123abc').baseEncoding.should.be.exactly('123abc');
+      new TokenGenerator('123abc').baseEncoding.should.be.exactly('123abc');
+      new TokenGenerator(512, '123abc').baseEncoding.should.be.exactly('123abc');
     });
 
     it('should throw if bitSize is not a positive integer that is a multiple of 128', function() {
-      should.throws(function() { new KeyGenerator(-128); }, Error);
-      should.throws(function() { new KeyGenerator(127); }, Error);
-      should.throws(function() { new KeyGenerator(Infinity); }, Error);
-      should.throws(function() { new KeyGenerator(true); }, Error);
+      should.throws(function() { new TokenGenerator(-128); }, Error);
+      should.throws(function() { new TokenGenerator(127); }, Error);
+      should.throws(function() { new TokenGenerator(Infinity); }, Error);
+      should.throws(function() { new TokenGenerator(true); }, Error);
     });
 
     it('should throw if baseEncoding is not a string', function() {
-      should.throws(function() { new KeyGenerator(128, true); }, Error);
-      should.throws(function() { new KeyGenerator(128, 256); }, Error);
-      should.throws(function() { new KeyGenerator(128, {}); }, Error);
-      should.throws(function() { new KeyGenerator(128, []); }, Error);
-      should.throws(function() { new KeyGenerator(128, /regex/); }, Error);
-      should.throws(function() { new KeyGenerator(128, new Date()); }, Error);
+      should.throws(function() { new TokenGenerator(128, true); }, Error);
+      should.throws(function() { new TokenGenerator(128, 256); }, Error);
+      should.throws(function() { new TokenGenerator(128, {}); }, Error);
+      should.throws(function() { new TokenGenerator(128, []); }, Error);
+      should.throws(function() { new TokenGenerator(128, /regex/); }, Error);
+      should.throws(function() { new TokenGenerator(128, new Date()); }, Error);
     });
 
   });
@@ -61,8 +61,8 @@ describe('KeyGenerator', function() {
   describe('#bitSize', function() {
 
     it('should be the same value as is passed to the constructor', function() {
-      new KeyGenerator().bitSize.should.be.exactly(128);
-      new KeyGenerator(256).bitSize.should.be.exactly(256);
+      new TokenGenerator().bitSize.should.be.exactly(128);
+      new TokenGenerator(256).bitSize.should.be.exactly(256);
     });
 
   });
@@ -71,8 +71,8 @@ describe('KeyGenerator', function() {
   describe('#baseEncoding', function() {
 
     it('should be the same value as is passed to the constructor', function() {
-      new KeyGenerator().baseEncoding.should.be.exactly(KeyGenerator.BASE58);
-      new KeyGenerator(KeyGenerator.BASE62).baseEncoding.should.be.exactly(KeyGenerator.BASE62);
+      new TokenGenerator().baseEncoding.should.be.exactly(TokenGenerator.BASE58);
+      new TokenGenerator(TokenGenerator.BASE62).baseEncoding.should.be.exactly(TokenGenerator.BASE62);
     });
 
   });
@@ -81,54 +81,54 @@ describe('KeyGenerator', function() {
   describe('#base', function() {
 
     it('should be the encoding base number (which is the length of the baseEncoding)', function() {
-      new KeyGenerator().base.should.be.exactly(58);
-      new KeyGenerator(KeyGenerator.BASE62).base.should.be.exactly(62);
-      new KeyGenerator(256, '123abc').base.should.be.exactly(6);
+      new TokenGenerator().base.should.be.exactly(58);
+      new TokenGenerator(TokenGenerator.BASE62).base.should.be.exactly(62);
+      new TokenGenerator(256, '123abc').base.should.be.exactly(6);
     });
 
   });
 
 
-  describe('#keyLength', function() {
+  describe('#tokenLength', function() {
 
-    it('should be the maximum possible key length', function() {
-      new KeyGenerator().keyLength.should.be.exactly(22);
-      new KeyGenerator(256, KeyGenerator.BASE62).keyLength.should.be.exactly(43);
-      new KeyGenerator(512, '01').keyLength.should.be.exactly(512);
+    it('should be the maximum possible token length', function() {
+      new TokenGenerator().tokenLength.should.be.exactly(22);
+      new TokenGenerator(256, TokenGenerator.BASE62).tokenLength.should.be.exactly(43);
+      new TokenGenerator(512, '01').tokenLength.should.be.exactly(512);
     });
 
   });
 
 
-  describe('#generateKey()', function() {
+  describe('#generate()', function() {
 
     it('should return a string', function() {
-      new KeyGenerator().generateKey().should.have.type('string');
+      new TokenGenerator().generate().should.have.type('string');
     });
 
-    it('should generate a key with the specified bitSize and baseEncoding', function() {
-      var keygen = new KeyGenerator();
-      var key = keygen.generateKey();
-      key.should.match(new RegExp('^[' + keygen.baseEncoding + ']{' + keygen.keyLength + '}$'));
+    it('should generate a token with the specified bitSize and baseEncoding', function() {
+      var tokgen = new TokenGenerator();
+      var token = tokgen.generate();
+      token.should.match(new RegExp('^[' + tokgen.baseEncoding + ']{' + tokgen.tokenLength + '}$'));
 
-      keygen = new KeyGenerator(KeyGenerator.BASE16);
-      key = keygen.generateKey();
-      key.should.match(new RegExp('^[' + keygen.baseEncoding + ']{' + keygen.keyLength + '}$'));
+      tokgen = new TokenGenerator(TokenGenerator.BASE16);
+      token = tokgen.generate();
+      token.should.match(new RegExp('^[' + tokgen.baseEncoding + ']{' + tokgen.tokenLength + '}$'));
 
-      keygen = new KeyGenerator('01');
-      key = keygen.generateKey();
-      key.should.match(new RegExp('^[' + keygen.baseEncoding + ']{' + keygen.keyLength + '}$'));
+      tokgen = new TokenGenerator('01');
+      token = tokgen.generate();
+      token.should.match(new RegExp('^[' + tokgen.baseEncoding + ']{' + tokgen.tokenLength + '}$'));
 
-      keygen = new KeyGenerator(256);
-      key = keygen.generateKey();
-      key.should.match(new RegExp('^[' + keygen.baseEncoding + ']{' + keygen.keyLength + '}$'));
+      tokgen = new TokenGenerator(256);
+      token = tokgen.generate();
+      token.should.match(new RegExp('^[' + tokgen.baseEncoding + ']{' + tokgen.tokenLength + '}$'));
 
-      keygen = new KeyGenerator(512, KeyGenerator.BASE62);
-      key = keygen.generateKey();
-      key.should.match(new RegExp('^[' + keygen.baseEncoding + ']{' + keygen.keyLength + '}$'));
+      tokgen = new TokenGenerator(512, TokenGenerator.BASE62);
+      token = tokgen.generate();
+      token.should.match(new RegExp('^[' + tokgen.baseEncoding + ']{' + tokgen.tokenLength + '}$'));
     });
 
-    it('should produce a key of the correct length even if the uuid function returns a small key value', function() {
+    it('should produce a token of the correct length even if the uuid function returns a small token value', function() {
       // Mock node-uuid.v4
       uuid.v4 = function(options, buffer, offset) {
         offset = offset || 0;
@@ -136,9 +136,9 @@ describe('KeyGenerator', function() {
           buffer[offset + i] = 1;
         }
       };
-      var keygen = new KeyGenerator(256);
-      var key = keygen.generateKey();
-      key.should.match(new RegExp('^[' + keygen.baseEncoding + ']{' + keygen.keyLength + '}$'));
+      var tokgen = new TokenGenerator(256);
+      var token = tokgen.generate();
+      token.should.match(new RegExp('^[' + tokgen.baseEncoding + ']{' + tokgen.tokenLength + '}$'));
     });
 
     it('should work if the generated UUID has leading zeros', function() {
@@ -151,9 +151,9 @@ describe('KeyGenerator', function() {
           buffer[offset + i] = 256 * Math.random() | 0;
         }
       };
-      var keygen = new KeyGenerator();
-      var key = keygen.generateKey();
-      key.should.match(new RegExp('^[' + keygen.baseEncoding + ']{' + keygen.keyLength + '}$'));
+      var tokgen = new TokenGenerator();
+      var token = tokgen.generate();
+      token.should.match(new RegExp('^[' + tokgen.baseEncoding + ']{' + tokgen.tokenLength + '}$'));
     });
 
   });
