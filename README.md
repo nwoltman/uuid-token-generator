@@ -90,12 +90,37 @@ tokgen.generate();
 ### (readonly) tokgen.bitSize : `Number`
 The size of the token that will be generated in bits (the `bitSize` value passed to the `TokenGenerator` constructor).
 
+**Example**
+```js
+new TokenGenerator().bitSize // -> 128
+new TokenGenerator(256).bitSize // -> 256
+```
+
 ### (readonly) tokgen.baseEncoding : `String`
 The set of characters used to encode the token (the `baseEncoding` value passed to the `TokenGenerator` constructor).
+
+**Example**
+```js
+new TokenGenerator().baseEncoding // -> '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
+new TokenGenerator('abc').baseEncoding // -> 'abc'
+```
 
 ### (readonly) tokgen.base : `Number`
 The base of the token that will be generated (which is the number of characters in the `baseEncoding`).
 
+**Example**
+```js
+new TokenGenerator().base // -> 58
+new TokenGenerator(TokenGenerator.BASE62).base // -> 62
+new TokenGenerator('abc').base // -> 3
+```
+
 ### (readonly) tokgen.tokenLength : `Number`
 The length of the token that will be generated. The generated token will always be this length.  
 Calculated as such: `tokenLength = Math.ceil(bitSize / Math.log2(base))`
+
+**Example**
+```js
+new TokenGenerator().tokenLength // -> 22
+new TokenGenerator(256, TokenGenerator.BASE62).tokenLength // -> 43
+```
