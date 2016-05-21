@@ -66,6 +66,11 @@ new KeyGenerator('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
 ### KeyGenerator.BASE62 : `String`
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`
 
+### KeyGenerator.BASE71 : `String`
+`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~`
+
+(all ASCII characters that are not escaped by `encodeURIComponent()`)
+
 ---
 
 ### keygen.generateKey() ⇒ `String`
