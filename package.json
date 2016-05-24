@@ -1,6 +1,6 @@
 {
   "name": "uuid-token-generator",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Generates random tokens with custom size and base-encoding using the RFC 4122 v4 UUID algorithm",
   "homepage": "https://github.com/nwoltman/uuid-token-generator",
   "license": "MIT",
