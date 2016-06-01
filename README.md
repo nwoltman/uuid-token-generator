@@ -66,15 +66,15 @@ new TokenGenerator('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx
 ### TokenGenerator.BASE62 : `String`
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`
 
-### TokenGenerator.BASE70 : `String`
-`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!()*-._~`
+### TokenGenerator.BASE66 : `String`
+`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-._~`
 
-(all ASCII characters that are not escaped by `encodeURIComponent()` except single quotes `'`)
+(all ASCII characters that do not need to be encoded in a URI as specified by [RFC 3986](http://tools.ietf.org/html/rfc3986))
 
 ### TokenGenerator.BASE71 : `String`
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!'()*-._~`
 
-(all ASCII characters that are not escaped by `encodeURIComponent()`)
+(all ASCII characters that are not encoded by `encodeURIComponent()`)
 
 ---
 
