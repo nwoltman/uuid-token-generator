@@ -91,4 +91,7 @@ TokenGenerator.prototype.generate = function() {
   return token;
 };
 
+// so user using old uuid-key-generate don't need to change the code
+TokenGenerator.prototype.generateKey = TokenGenerator.prototype.generate;
+
 module.exports = TokenGenerator;
