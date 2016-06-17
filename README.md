@@ -1,6 +1,8 @@
 # UUID Key Generator
 
-### This module has been deprecated in favour of [`uuid-token-generator`](https://www.npmjs.com/package/uuid-token-generator)
+#### This module has been deprecated in favour of [`uuid-token-generator`](https://www.npmjs.com/package/uuid-token-generator). Please note that there are [breaking changes](https://github.com/nwoltman/uuid-token-generator/releases/tag/v0.4.0) when upgrading to `uuid-token-generator`.
+
+---
 
 Provides a class that generates random keys with custom size and base-encoding using the [RFC4122](http://www.ietf.org/rfc/rfc4122.txt) v4 UUID algorithm. Generated keys are strings that are guaranteed to always be the same length, depending on the [bit-size](#new-keygeneratorbitsize-baseencoding--object) specified for the key.
 
