@@ -1,10 +1,12 @@
 {
   "root": true,
   "env": {
+    "es6": true,
     "node": true
   },
   "rules": {
     "array-bracket-spacing": 2,
+    "arrow-parens": [2, "as-needed", {"requireForBlockBody": true}],
     "block-scoped-var": 2,
     "block-spacing": 2,
     "brace-style": 2,
@@ -58,6 +60,8 @@
     "object-curly-spacing": 2,
     "one-var": [2, "never"],
     "operator-linebreak": 2,
+    "prefer-arrow-callback": [2, {"allowNamedFunctions": true}],
+    "prefer-const": 2,
     "quote-props": [2, "as-needed"],
     "quotes": [2, "single", "avoid-escape"],
     "semi": 2,

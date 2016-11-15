@@ -39,7 +39,7 @@ module.exports = function(grunt) {
     },
   });
 
-  grunt.event.on('coverage', function(lcov, done) {
+  grunt.event.on('coverage', (lcov, done) => {
     require('coveralls').handleInput(lcov, done);
   });
 
