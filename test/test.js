@@ -3,7 +3,7 @@
 const TokenGenerator = require('../');
 
 const should = require('should');
-const uuid = require('node-uuid');
+const uuid = require('uuid');
 
 describe('TokenGenerator', () => {
 
@@ -129,7 +129,7 @@ describe('TokenGenerator', () => {
     });
 
     it('should produce a token of the correct length even if the uuid function returns a small token value', () => {
-      // Mock node-uuid.v4
+      // Mock uuid.v4
       uuid.v4 = function(options, buffer, offset) {
         offset = offset || 0;
         for (var i = 0; i < 16; i++) {
@@ -142,7 +142,7 @@ describe('TokenGenerator', () => {
     });
 
     it('should work if the generated UUID has leading zeros', () => {
-      // Mock node-uuid.v4
+      // Mock uuid.v4
       uuid.v4 = function(options, buffer, offset) {
         offset = offset || 0;
         buffer[offset] = 0;

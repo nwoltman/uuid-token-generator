@@ -1,6 +1,6 @@
 'use strict';
 
-const uuid = require('node-uuid');
+const uuid = require('uuid');
 
 class TokenGenerator {
   constructor(bitSize, baseEncoding) {
