@@ -1,6 +1,8 @@
 # UUID Key Generator
 
-#### This module has been deprecated in favour of [`uuid-token-generator`](https://www.npmjs.com/package/uuid-token-generator). Please note that there are [breaking changes](https://github.com/nwoltman/uuid-token-generator/releases/tag/v0.4.0) when upgrading to `uuid-token-generator`.
+#### This module has been deprecated in favour of [uuid-token-generator](https://www.npmjs.com/package/uuid-token-generator). Please note that there are [breaking changes](https://github.com/nwoltman/uuid-token-generator/releases/tag/v0.4.0) when upgrading to `uuid-token-generator`.
+
+#### However, you should probably use [uid-generator](https://www.npmjs.com/package/uid-generator) instead since it allows for more customization in the tokens it generates and does not produce overlapping UIDs.
 
 ---
 
@@ -37,9 +39,9 @@ keygen2.generateKey();
 Creates a new KeyGenerator instance that generates `bitSize`-bit keys encoded using the characters in `baseEncoding`.
 
 | Param | Default | Type | Description |
-|-------|---------|------|-------------|
-| [bitSize] | `128` | Number | The size of the key to generate in bits. Must be a multiple of 128. |
-| [baseEncoding] | `KeyGenerator.BASE58` | String | One of the `KeyGenerator.BASE##` constants or a custom string of characters to use to encode the key. |
+|:------|:--------|:-----|:------------|
+| [bitSize] | `128` | number | The size of the key to generate in bits. Must be a multiple of 128. |
+| [baseEncoding] | `KeyGenerator.BASE58` | string | One of the `KeyGenerator.BASE##` constants or a custom string of characters to use to encode the key. |
 
 **Example**
 ```js
