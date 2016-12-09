@@ -39,9 +39,9 @@ tokgen2.generate();
 Creates a new TokenGenerator instance that generates `bitSize`-bit tokens encoded using the characters in `baseEncoding`.
 
 | Param | Default | Type | Description |
-|-------|---------|------|-------------|
-| [bitSize] | `128` | Number | The size of the token to generate in bits. Must be a multiple of 128. |
-| [baseEncoding] | `TokenGenerator.BASE58` | String | One of the `TokenGenerator.BASE##` constants or a custom string of characters to use to encode the token. |
+|:------|:--------|:-----|:------------|
+| [bitSize] | `128` | number | The size of the token to generate in bits. Must be a multiple of 128. |
+| [baseEncoding] | `TokenGenerator.BASE58` | string | One of the `TokenGenerator.BASE##` constants or a custom string of characters to use to encode the token. |
 
 **Example**
 ```js
