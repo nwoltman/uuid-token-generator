@@ -10,6 +10,20 @@ Provides a class that generates random tokens with custom size and base-encoding
 
 Great for generating things like API keys and compact UIDs.
 
+---
+### WARNING
+---
+
+**This package is no longer being maintained because a better one exists—[uid-generator](https://www.npmjs.com/package/uid-generator)—which is better for the following reasons:**
+
++ **It has more flexible token generation options**
+  + **i.e. You can specify the length of the token that you'd like to generate**
++ **It has both a synchronous and asynchronous interface**
++ **It is less likely to produce colliding tokens**
++ **It's more performant**
+
+---
+
 
 ## Installation
 
@@ -21,13 +35,13 @@ npm install uuid-token-generator --save
 ## Usage
 
 ```js
-var TokenGenerator = require('uuid-token-generator');
+const TokenGenerator = require('uuid-token-generator');
 
-var tokgen = new TokenGenerator(); // Default is a 128-bit token encoded in base58
+const tokgen = new TokenGenerator(); // Default is a 128-bit token encoded in base58
 tokgen.generate();
 // -> '4QhmRwHwwrgFqXULXNtx4d'
 
-var tokgen2 = new TokenGenerator(256, TokenGenerator.BASE62);
+const tokgen2 = new TokenGenerator(256, TokenGenerator.BASE62);
 tokgen2.generate();
 // -> 'x6GCX3aq9hIT8gjhvO96ObYj0W5HBVTsj64eqCuVc5X'
 ```
@@ -85,7 +99,7 @@ Generates a random token.
 
 **Example**
 ```js
-var tokgen = new TokenGenerator();
+const tokgen = new TokenGenerator();
 tokgen.generate();
 // -> 'vf5NrETkUKCa6FhkyRSazD'
 ```
