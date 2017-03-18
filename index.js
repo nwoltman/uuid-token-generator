@@ -29,9 +29,7 @@ class TokenGenerator {
 
   generate() {
     const buffer = Buffer.allocUnsafe(this._bytes);
-    const digits = [0];
     var i;
-    var j;
 
     for (i = 0; i < this._bytes; i += 16) {
       uuid.v4(null, buffer, i);
@@ -41,39 +39,30 @@ class TokenGenerator {
       return buffer.toString('hex');
     }
 
-    for (i = 0; i < buffer.length; i++) {
-      for (j = 0; j < digits.length; j++) {
-        digits[j] <<= 8;
+    const digits = [0];
+
+    for (i = 0; i < buffer.length; ++i) {
+      var carry = buffer[i];
+
+      for (var j = 0; j < digits.length; ++j) {
+        carry += digits[j] << 8;
+        digits[j] = carry % this.base;
+        carry = (carry / this.base) | 0;
       }
 
-      digits[0] += buffer[i];
-
-      var carry = 0;
-      for (j = 0; j < digits.length; j++) {
-        digits[j] += carry;
-        carry = digits[j] / this.base | 0;
-        digits[j] %= this.base;
-      }
-
-      while (carry) {
+      while (carry > 0) {
         digits.push(carry % this.base);
-        carry = carry / this.base | 0;
+        carry = (carry / this.base) | 0;
       }
     }
 
-    // Deal with leading zeros
-    for (i = 0; buffer[i] === 0 && i < buffer.length - 1; i++) {
-      digits.push(0);
-    }
+    var token = digits.length < this.tokenLength
+      ? this.baseEncoding[0].repeat(this.tokenLength - digits.length) // Leading zeros
+      : '';
 
-    // Fill with random numbers to get the full token length
-    while (digits.length < this.tokenLength) {
-      digits.push(this.base * Math.random() | 0);
-    }
+    i = digits.length;
 
-    // Convert digits to a string
-    var token = '';
-    for (i = 0; i < digits.length; i++) {
+    while (i--) {
       token += this.baseEncoding[digits[i]];
     }
 

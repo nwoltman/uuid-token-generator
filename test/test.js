@@ -154,6 +154,14 @@ describe('TokenGenerator', () => {
       const tokgen = new TokenGenerator();
       const token = tokgen.generate();
       token.should.match(new RegExp('^[' + tokgen.baseEncoding + ']{' + tokgen.tokenLength + '}$'));
+
+      // Return all 0s
+      uuid.v4 = (function(options, buffer, offset) {
+        for (var i = 0; i < 16; i++) {
+          buffer[offset + i] = 0;
+        }
+      });
+      new TokenGenerator(128).generate().should.equal('1111111111111111111111');
     });
 
   });
