@@ -28,7 +28,7 @@ class TokenGenerator {
   }
 
   generate() {
-    const buffer = new Buffer(this._bytes);
+    const buffer = Buffer.allocUnsafe(this._bytes);
     const digits = [0];
     var i;
     var j;
